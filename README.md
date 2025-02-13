@@ -13,14 +13,14 @@ Uma aplicação web para gerenciar contatos com integração ao serviço ViaCEP 
 
 ## Tecnologias Utilizadas
 
-- [Next.js 14](https://nextjs.org/) - Framework React
-- [TypeScript](https://www.typescriptlang.org/) - Linguagem de programação
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
-- [NextAuth.js](https://next-auth.js.org/) - Autenticação
-- [Google Maps API](https://developers.google.com/maps) - Mapas e Geocoding
-- [ViaCEP API](https://viacep.com.br/) - Consulta de CEP
-- [Radix UI](https://www.radix-ui.com/) - Componentes de interface
-- [React Hot Toast](https://react-hot-toast.com/) - Notificações
+- [Next.js 14](https://nextjs.org/) 
+- [TypeScript](https://www.typescriptlang.org/) 
+- [Tailwind CSS](https://tailwindcss.com/) 
+- [NextAuth.js](https://next-auth.js.org/) 
+- [Google Maps API](https://developers.google.com/maps) 
+- [ViaCEP API](https://viacep.com.br/) 
+- [Radix UI](https://www.radix-ui.com/) 
+- [React Hot Toast](https://react-hot-toast.com/) 
 
 ## Configuração
 
