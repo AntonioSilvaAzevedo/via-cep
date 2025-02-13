@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VIA CEP - Gerenciador de Contatos
 
-## Getting Started
+Uma aplicação web para gerenciar contatos com integração ao serviço ViaCEP e Google Maps.
 
-First, run the development server:
+## Funcionalidades
 
+- 🔐 Autenticação de usuários (local e Google)
+- 📝 Cadastro e gerenciamento de contatos
+- 🗺️ Visualização de endereços no mapa
+- 🔍 Busca e filtragem de contatos
+- 📱 Interface responsiva
+- 🏷️ Ordenação por nome ou CPF
+
+## Tecnologias Utilizadas
+
+- [Next.js 14](https://nextjs.org/) - Framework React
+- [TypeScript](https://www.typescriptlang.org/) - Linguagem de programação
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
+- [NextAuth.js](https://next-auth.js.org/) - Autenticação
+- [Google Maps API](https://developers.google.com/maps) - Mapas e Geocoding
+- [ViaCEP API](https://viacep.com.br/) - Consulta de CEP
+- [Radix UI](https://www.radix-ui.com/) - Componentes de interface
+- [React Hot Toast](https://react-hot-toast.com/) - Notificações
+
+## Configuração
+
+1. Clone o repositório
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/seu-usuario/via-cep.git
+cd via-cep
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configure as variáveis de ambiente (.env.local)
+```plaintext
+GOOGLE_CLIENT_ID=seu_client_id
+GOOGLE_CLIENT_SECRET=seu_client_secret
+NEXTAUTH_SECRET=sua_chave_secreta
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=sua_chave_google_maps
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Inicie o servidor de desenvolvimento
+```bash
+npm run dev
+```
 
-## Learn More
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-To learn more about Next.js, take a look at the following resources:
+## Funcionalidades Principais
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Autenticação**: Login com email/senha ou conta Google
+- **Gerenciamento de Contatos**: Adicione, edite e remova contatos
+- **Busca de CEP**: Preenchimento automático de endereço
+- **Visualização no Mapa**: Veja a localização dos contatos no Google Maps
+- **Filtragem**: Busque contatos por nome ou CPF
+- **Ordenação**: Organize os contatos em ordem crescente ou decrescente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Licença
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
