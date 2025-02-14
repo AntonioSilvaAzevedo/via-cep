@@ -85,7 +85,7 @@ export default function Login() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             required
           />
           <input
@@ -93,7 +93,7 @@ export default function Login() {
             placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             required
           />
         </div>
@@ -103,7 +103,7 @@ export default function Login() {
           disabled={isLoading}
           className="w-full px-4 py-2 bg-[#6C727F] text-white  hover:bg-[#555F6D] rounded-md transition-colors disabled:opacity-50"
         >
-          {isLoading ? "Processando..." : isRegister ? "Cadastrar" : "Entrar"}
+          {isLoading ? "Carregando..." : isRegister ? "Cadastrar" : "Entrar"}
         </button>
 
         <button
