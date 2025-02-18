@@ -52,11 +52,11 @@ Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ## Funcionalidades Principais
 
-- **Autenticação**: Login com email/senha ou conta Google
-- **Gerenciamento de Contatos**: Adicione e remova contatos
-- **Busca de CEP**: Preenchimento automático de endereço com base no CEP
-- **Visualização no Mapa**: Veja a localização dos contatos no Google Maps
-- **Filtragem**: Busque contatos por nome ou CPF
+- **Autenticação**: Login com email/senha ou conta Google;
+- **Gerenciamento de Contatos**: Adicione, edite e remova contatos;
+- **Busca de CEP**: Preenchimento automático de endereço com base no CEP;
+- **Visualização no Mapa**: Veja a localização dos contatos no Google Maps;
+- **Filtragem**: Busque contatos por nome ou CPF;
 - **Ordenação**: Organize os contatos em ordem crescente ou decrescente
 
 
