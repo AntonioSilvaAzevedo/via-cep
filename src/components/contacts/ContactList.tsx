@@ -1,19 +1,20 @@
 "use client";
 import { Contact } from "@/hooks/useContacts";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ArrowUpDown, MapPin, Trash2, X } from "lucide-react";
+import { ArrowUpDown, Edit2, MapPin, Trash2, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactMap } from "./ContactMap";
 
 interface ContactListProps {
   contacts: Contact[];
   onDelete: (id: string) => void;
+  onEdit: (contact: Contact) => void;
 }
 
 type SortOrder = "asc" | "desc";
 const ITEMS_PER_PAGE = 10;
 
-export function ContactList({ contacts, onDelete }: ContactListProps) {
+export function ContactList({ contacts, onDelete, onEdit }: ContactListProps) {
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
@@ -184,6 +185,12 @@ export function ContactList({ contacts, onDelete }: ContactListProps) {
                     </Dialog.Content>
                   </Dialog.Portal>
                 </Dialog.Root>
+                <button
+                  onClick={() => onEdit(contact)}
+                  className="text-blue-500 hover:text-blue-700"
+                >
+                  <Edit2 size={20} />
+                </button>
                 <button
                   onClick={() => onDelete(contact.id)}
                   className="text-grey-200 hover:text-grey-500"

@@ -1,6 +1,6 @@
 "use client";
 import { cpf as cpfValidator } from "cpf-cnpj-validator";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import { formatCEP } from "../utils/formatters";
 import { useCep } from "./useCep";
@@ -20,24 +20,8 @@ export interface ContactFormData {
   longitude: number;
 }
 
-const initialFormData: ContactFormData = {
-  name: "",
-  cpf: "",
-  phone: "",
-  cep: "",
-  street: "",
-  number: "",
-  complement: "",
-  neighborhood: "",
-  city: "",
-  state: "",
-  latitude: 0,
-  longitude: 0,
-};
-
 async function getGeocoding(address: string) {
   try {
-    // Chave da API do Google Maps
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
     if (!apiKey) {
@@ -61,7 +45,6 @@ async function getGeocoding(address: string) {
       return { latitude: lat, longitude: lng };
     }
 
-    // Se não encontrar o endereço específico, tenta buscar pelo CEP
     const cepOnly = address.match(/\d{5}-?\d{3}/)?.[0];
     if (cepOnly && data.status !== "OK") {
       const cepUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${cepOnly}&key=${apiKey}`;
@@ -84,10 +67,40 @@ async function getGeocoding(address: string) {
 }
 
 export function useContactForm() {
-  const [formData, setFormData] = useState<ContactFormData>(initialFormData);
-  const { validateCep, isLoading: isLoadingCep } = useCep();
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    cpf: "",
+    phone: "",
+    cep: "",
+    street: "",
+    number: "",
+    complement: "",
+    neighborhood: "",
+    city: "",
+    state: "",
+    latitude: 0,
+    longitude: 0,
+  });
 
-  const resetForm = () => setFormData(initialFormData);
+  const [isLoadingCep, setIsLoadingCep] = useState(false);
+  const { validateCep } = useCep();
+
+  const resetForm = useCallback(() => {
+    setFormData({
+      name: "",
+      cpf: "",
+      phone: "",
+      cep: "",
+      street: "",
+      number: "",
+      complement: "",
+      neighborhood: "",
+      city: "",
+      state: "",
+      latitude: 0,
+      longitude: 0,
+    });
+  }, []);
 
   const validateForm = async (): Promise<boolean> => {
     const errors: string[] = [];
@@ -125,7 +138,6 @@ export function useContactForm() {
         longitude: coordinates.longitude,
       }));
     } else {
-      // Coordenadas padrão para o centro de Curitiba como fallback
       setFormData(prev => ({
         ...prev,
         latitude: -25.4284,

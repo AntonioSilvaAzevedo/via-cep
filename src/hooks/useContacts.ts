@@ -81,10 +81,20 @@ export function useContacts() {
     }
   };
 
+  const updateContact = (updatedContact: Contact) => {
+    const newContacts = contacts.map(contact =>
+      contact.id === updatedContact.id ? updatedContact : contact
+    );
+    setContacts(newContacts);
+    localStorage.setItem(`contacts_${session?.user?.email}`, JSON.stringify(newContacts));
+    return updatedContact;
+  };
+
   return {
     contacts,
     addContact,
     deleteContact,
     clearContacts,
+    updateContact,
   };
 } 
