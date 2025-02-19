@@ -10,7 +10,6 @@ interface ContactMapProps {
 export function ContactMap({ latitude, longitude }: ContactMapProps) {
   console.log("Renderizando mapa com coordenadas:", { latitude, longitude });
 
-  // Use coordenadas padrão se as fornecidas forem inválidas
   const validLatitude = latitude || -25.4284;
   const validLongitude = longitude || -49.2733;
 

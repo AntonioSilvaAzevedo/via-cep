@@ -1,24 +1,10 @@
 "use client";
+import { ContactFormData } from "@/types/contact";
 import { cpf as cpfValidator } from "cpf-cnpj-validator";
 import { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import { formatCEP } from "../utils/formatters";
 import { useCep } from "./useCep";
-
-export interface ContactFormData {
-  name: string;
-  cpf: string;
-  phone: string;
-  cep: string;
-  street: string;
-  number: string;
-  complement: string;
-  neighborhood: string;
-  city: string;
-  state: string;
-  latitude: number;
-  longitude: number;
-}
 
 async function getGeocoding(address: string) {
   try {
@@ -32,7 +18,7 @@ async function getGeocoding(address: string) {
       address
     )}&key=${apiKey}`;
 
-    console.log('Fazendo requisição para:', url.replace(apiKey, '***')); // Log seguro
+    console.log('Fazendo requisição para:', url.replace(apiKey, '***')); 
 
     const response = await fetch(url);
     const data = await response.json();
@@ -149,26 +135,28 @@ export function useContactForm() {
 
   const handleCepChange = async (cep: string) => {
     const value = cep.replace(/\D/g, "");
-    const formattedCEP = value.length <= 8 
-      ? formatCEP(value) 
-      : formData.cep;
-
+    const formattedCEP = value.length <= 8 ? formatCEP(value) : formData.cep;
     setFormData((prev) => ({ ...prev, cep: formattedCEP }));
 
     if (value.length === 8) {
-      const cepData = await validateCep(value);
-      if (cepData) {
-        const newData = {
-          ...formData,
-          street: cepData.logradouro || formData.street,
-          neighborhood: cepData.bairro || formData.neighborhood,
-          city: cepData.localidade || formData.city,
-          state: cepData.uf || formData.state,
-        };
-        setFormData(newData);
+      setIsLoadingCep(true);
+      try {
+        const cepData = await validateCep(value);
+        if (cepData) {
+          const newData = {
+            ...formData,
+            street: cepData.logradouro || formData.street,
+            neighborhood: cepData.bairro || formData.neighborhood,
+            city: cepData.localidade || formData.city,
+            state: cepData.uf || formData.state,
+          };
+          setFormData(newData);
 
-        const fullAddress = `${cepData.logradouro}, ${formData.number || 'S/N'}, ${cepData.bairro}, ${cepData.localidade}, ${cepData.uf}, ${value}`;
-        await updateCoordinates(fullAddress);
+          const fullAddress = `${cepData.logradouro}, ${formData.number || 'S/N'}, ${cepData.bairro}, ${cepData.localidade}, ${cepData.uf}, ${value}`;
+          await updateCoordinates(fullAddress);
+        }
+      } finally {
+        setIsLoadingCep(false);
       }
     }
   };

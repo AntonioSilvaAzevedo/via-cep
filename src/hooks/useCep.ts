@@ -1,15 +1,7 @@
 "use client";
+import { CepResponse } from "@/types/contact";
 import { useState } from "react";
 import toast from "react-hot-toast";
-
-interface CepResponse {
-  cep: string;
-  logradouro: string;
-  complemento: string;
-  bairro: string;
-  localidade: string;
-  uf: string;
-}
 
 export function useCep() {
   const [isLoading, setIsLoading] = useState(false);

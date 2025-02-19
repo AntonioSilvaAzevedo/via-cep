@@ -1,4 +1,4 @@
-import { ContactFormData } from "@/hooks/useContactForm";
+import { ContactFormData } from "@/types/contact";
 import { formatCPF } from "@/utils/formatters";
 import * as Dialog from "@radix-ui/react-dialog";
 
